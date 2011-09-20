@@ -1,0 +1,22 @@
+<system-workflow-definition name="ws_wf_def" initial-step="initialize" >
+  <triggers>
+    <trigger name="merge" class="com.cms.workflow.function.Merge" />
+    <trigger name="version" class="com.cms.workflow.function.Version" />
+  </triggers>
+  <steps>
+    <step type="system" identifier="initialize" label="Initialization" >
+      <actions>
+        <action identifier="initialize" label="Initialize" move="forward" >
+          <trigger name="merge" />
+        </action>
+      </actions>
+    </step>
+    <step type="transition" identifier="transition" label="Transition" default-user="admin" >
+      <actions>
+        <action identifier="go" label="Go!" next-id="finished" move="next_id" />
+      </actions>
+    </step>
+    <step type="system" identifier="finished" label="Finished" />
+  </steps>
+  <non-ordered-steps/>
+</system-workflow-definition>
