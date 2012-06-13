@@ -38,7 +38,7 @@ $auth = array('username' => $username, 'password' => $password);
 echo "Process started at ".date("m/d/y H:i:s",time())."\r\n";
 
 // the ID of your root folder, or the folder you want to start from (if not root)
-$rootFolderID = '106e49ffd87de410007c197e694c108d';
+$rootFolderID = 'ROOT_FOLDER_ID';
 readFolder($rootFolderID, $auth, $cascade);
 
 function readFolder ($folderReadID, $auth, $cascade) {
@@ -70,9 +70,9 @@ function readFolder ($folderReadID, $auth, $cascade) {
 
 function readPage ($pageReadID, $auth, $cascade) {
 	// the Configuration Set to search for
-	$configSetID = '35ec2c38d87de4e2016c72cc63126f97';
+	$configSetID = 'CONFIG_SET_ID';
 	// the Content Type to assign
-	$contentTypeID = '9fdc8e7c6c3b961101c9e90cebb32c55';
+	$contentTypeID = 'CONFIG_SET_PATH';
 
 	$id = array('id' => $pageReadID, 'type' => 'page');
 	$readParams = array( 'authentication' => $auth, 'identifier' => $id );	
