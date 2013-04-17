@@ -1,0 +1,43 @@
+<system-workflow-definition name="Delete and Unpublish" initial-step="initialize" >
+  <triggers>
+    <trigger name="email" class="com.cms.workflow.function.EmailProvider" />
+    <trigger name="publish" class="com.cms.workflow.function.Publisher" />
+    <trigger name="merge" class="com.cms.workflow.function.Merge" />
+    <trigger name="assignStepIfUser" class="com.cms.workflow.function.AssignStepIfUser" />
+    <trigger name="assignToGroupOwningAsset" class="com.cms.workflow.function.AssignToGroupOwningAsset" />
+    <trigger name="assignToWorkflowOwner" class="com.cms.workflow.function.AssignToWorkflowOwner" />
+    <trigger name="delete" class="com.cms.workflow.function.Delete" />
+    <trigger name="deleteAndUnpublish" class="com.cms.workflow.function.DeleteAndUnpublish" />
+    <trigger name="preserveCurrentUser" class="com.cms.workflow.function.PreserveCurrentUser" />
+    <trigger name="publishSet" class="com.cms.workflow.function.PublishSetTrigger" />
+    <trigger name="version" class="com.cms.workflow.function.Version" />
+  </triggers>
+  <steps>
+    <step type="system" identifier="initialize" label="Initialization" >
+         <actions>
+            <action identifier="initialize" move="forward" type="auto">
+            </action>
+         </actions>
+    </step>
+      <step identifier="finalize-delete" label="Deleting" type="system">  
+         <actions>  
+            <action identifier="finalize" move="forward" type="auto">  
+               <trigger name="deleteAndUnpublish">  
+                   <parameter>  
+                      <name>authorizing-type</name>  
+                      <value>user</value>  
+                   </parameter>  
+                   <parameter>  
+                       <name>authorizing-user</name>  
+                       <value>admin</value>  
+                   </parameter>  
+                </trigger>
+               <trigger name="email"/>  
+            </action>  
+         </actions>  
+      </step>  
+      <step identifier="deleted" label="Deleted" type="system">  
+      </step>  
+  </steps>
+  <non-ordered-steps/>
+</system-workflow-definition>
