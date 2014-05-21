@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+    <title>Cascade Server - Bulk Page Update tool</title>    
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+
+<style>.required{font-weight: bold;} .required:before {content: '*';}</style>
+
+<h1>Cascade Server - Bulk Page Update tool</h1>
+<p>This tool will is alter all pages in the specified directory and its child directories. It can update the block and/or format for one region. Alternatively, it can select No Block and/or No Format for one region.</p>
+<p class="required">Required items</p>
+
+<form action="bulk_update_pages.cgi" method="POST">
+
+<fieldset for="credentials">
+<legend>Credentials</legend>
+    <label class="required" for="username">Username</label>
+    <input id="username" name="username" size="40"/><br />
+
+    <label class="required" for="password">Password</label>
+    <input type="password" id="password" name="password" size="40"/><br />
+
+
+</fieldset>
+
+<fieldset for="options">
+<legend>Options</legend>
+    <label class="required" for="server">Server</label>
+    <input id="server" name="server" size="40"/><br />
+
+    <label class="required" for="site">Site</label>
+    <input id="site" name="site" size="40"/><br />
+
+    <label class="required" for="directory">Directory</label>
+    <input id="directory" name="directory" size="40"/><br />
+
+    <label>Ignore (filename)</label>
+	<input name="ignore_names" id="ignore_names"  size="40"/>
+	<span class="small">
+		<input type="radio" name="ignore_these_files" value="true" />These files
+		<input type="radio" name="ignore_these_files" value="false"/>All other files
+	</span><br />
+	
+	<label class="required">Region name</label>
+	<input name="region_name" size="40"/><br />
+
+	<label class="required">Block path</label>
+	<input name="block_path" size="40" />
+	<span class="small"><input type="checkbox" name="no_block" value="true" />No Block</span>
+    <br />
+	
+	<label class="required">Format Path</label>
+	<input name="format_path" size="40" />
+	<span class="small"><input type="checkbox" name="no_format" value="true" />No Format</span>	
+<br />
+
+
+
+    <br /><br />
+    <label />
+    <input id="submit" name="submit" type="submit" />
+</fieldset>
+</form>
+
+
+
+<strong>Notes:</strong>
+<ul>
+<li>The Content Type MUST have an "html" configuration</li>
+</ul>
+<strong>Examples:</strong>
+<ul>
+<li><strong>Server:</strong> https://cascade.jmu.edu</li>
+<li><strong>Site:</strong> Biology</li>
+<li><strong>Directory:</strong> /about</li>
+<li><strong>Ignore:</strong> index,contact-us,31-robert-diaz-performance</li>
+<li><strong>Region Name:</strong> NAVIGATION</li>
+<li><strong>Block Path:</strong> _cascade/blocks/navigation</li>
+<li><strong>Format Path:</strong> _cascade/formats/leftnav-navigation</li>
+</ul>
+
+</body>
+
+</html>
