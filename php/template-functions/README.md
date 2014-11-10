@@ -9,6 +9,10 @@ Given a folder path, returns a list of templates.
 
 Given a template ID, publishes all related pages.
 
-**displayTemplateTree.php**
+**displayTemplateRelationships.php**
 
-Given a template, displays all related content types.
+Given a template ID, displays all related content types.
+
+**saveAsXMLTemplateRelationships.php**
+
+Given a template ID, creates an XML representation of related assets (content types, pages).
