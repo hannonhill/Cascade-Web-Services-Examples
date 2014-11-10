@@ -3,17 +3,10 @@ These scripts are powered by Wing Ming Chan's [cascade_ws](http://www.upstate.ed
 
 You'll need to supply the following:
 
-* 32-digit ID of the template
 * Cascade Server URL, username, password
 
-**publishTemplate.php**
+**listTemplates.php** Given a folder path, returns a list of templates.
 
-Given a template, publishes all related pages.
+**publishTemplate.php** - Given a template ID, publishes all related pages.
 
-**displayTemplateTree.php**
-
-Given a template, displays all related content types.
-
-**listTemplates.php**
-
-Returns a list of templates.
+**displayTemplateTree.php** - Given a template, displays all related content types.
