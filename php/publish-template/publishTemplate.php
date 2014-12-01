@@ -1,16 +1,14 @@
 <?php
-// Include authentication information
-// http://upstate.edu/cascade-admin/projects/web-services/introduction/basic-setup.php
-require_once('auth_username.php');
+// Initialize variables
+$ct = array(); // the content types array
+$totalContentTypes = $totalPages = 0;
 
 // Get the asset ID passed by the query string.
 $templateId = $_REQUEST['templateId'];
 
-// Initialize the content types array
-$ct = array();
 
-// Initialize the counter variables
-$totalPages = $totalContentTypes = 0;
+// Include authentication information
+require_once('auth_username.php');
 
 // Get the configuration sets related to the template
 $configSets = $cascade->getAsset(Template::TYPE, $templateId )->getSubscribers();
@@ -18,41 +16,45 @@ $configSets = $cascade->getAsset(Template::TYPE, $templateId )->getSubscribers()
 // Record the number of related configuration sets
 $totalConfigSets = count( $configSets );
 
-// Check if at least one related configuration set
+// If there's at least one related config set..
 if( $totalConfigSets > 0 )
 {   
-    // Loop through each related configuration set
+    // ..loop through all related configuration sets
     foreach( $configSets as $configSet )
     {
-        // For each related configuration set ...
+        // For each related configuration set, get all related content types 
         $cs = $configSet->getAsset( $service );
-        // ...get the related content types.
         $contentTypes = $cs->getSubscribers();
 
-        // Get the number of content types related to this config set.
+        // Save the total content types related to this config set.
         $countCT = count( $contentTypes );
-        // Keep a running total number of content types
-        $totalContentTypes += $countCT;
 
+        // If there's at least one related content type..
         if( $countCT > 0 )
         {
-            // store content types
+            // ..loop through all related content types..
     
             foreach( $contentTypes as $contentType )
-                // using associative array, removing repeated keys
+
+                // and save them to an associative array, removing repeated keys
                 $ct[ $contentType->getPathPath() ] = $contentType;            
         }
+
+        // Save the overall total number of content types.
+        $totalContentTypes += $countCT;
     }
 }
+$txt .= "<pre>";
 
-$txt .= "
-<pre>";
-if( count( array_keys ($ct ) ) > 0 )
-{
+if( count( array_keys( $ct )) > 0 )
+{   
+    // Loop through content type array
     foreach( $ct as $ct_name => $ct_child )
     {
-        // get the pages
+        // get the related pages
         $pages = $ct_child->getAsset( $service )->getSubscribers();
+        
+        // Save the total pages related to this content type
         $pageCount = count( $pages );
         $totalPages += $pageCount;
         
