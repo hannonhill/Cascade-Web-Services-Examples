@@ -8,7 +8,7 @@ $txt = "<pre>\n"; // saves publish results in plain text
 $templateId = $_REQUEST['templateId'];
 
 // Supply Cascade Server URL, username & password.
-require_once('auth_username.php');
+require_once('auth_user.php');
 
 // Get the configuration sets related to the template
 $configSets = $cascade->getAsset(Template::TYPE, $templateId )->getSubscribers();
