@@ -1,6 +1,6 @@
-Given a template ID, publishes all related pages.
+**Given a template ID, publishes all related pages.**
 
-**Example: publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1**
+Ex: publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1
 
 1. Loop through all related configuration sets
 2. For each configuration set, loop through all related content types
