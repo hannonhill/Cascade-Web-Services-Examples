@@ -13,7 +13,7 @@ publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1
 
 **Requirements**
 
-Uses Wing Ming Chan's [cascade_ws](http://www.upstate.edu/cascade-admin/projects/web-services/index.php) web services library. Visit [Basic Setup](http://upstate.edu/cascade-admin/projects/web-services/introduction/basic-setup.php) to get started.
+Uses Wing Ming Chan's [web services library](http://www.upstate.edu/cascade-admin/projects/web-services/index.php).
 
 **Issues**
 
