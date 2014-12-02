@@ -27,12 +27,10 @@ foreach( $configSets as $configSet )
     // Save the total content types related to this config set.
     $countCT = count( $contentTypes );
 
-
-    // Loop through all related content types..
-
+    // Loop through all related content types
     foreach( $contentTypes as $contentType )
 
-        // ..and save them to an associative array, removing repeated keys
+        // and save them to an associative array, removing repeated keys
         $ct[ $contentType->getPathPath() ] = $contentType;
 
     // Save the overall total number of content types.
