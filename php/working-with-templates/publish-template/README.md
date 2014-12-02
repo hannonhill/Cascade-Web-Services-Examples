@@ -17,4 +17,4 @@ Uses Wing Ming Chan's [cascade_ws](http://www.upstate.edu/cascade-admin/projects
 
 **Issues**
 
-Each page is published individually. This can lead to a bottleneck in the [Cascade Server publish queue](http://help.hannonhill.com/discussions/how-do-i/14581-how-to-clear-all-active-publish-jobs).
+Each page is published individually. Templates with many related templates can create a bottleneck in the [Cascade Server publish queue](http://help.hannonhill.com/discussions/how-do-i/14581-how-to-clear-all-active-publish-jobs).
