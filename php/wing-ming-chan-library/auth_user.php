@@ -1,8 +1,7 @@
 <?php
-// Include Wing's web services library:
+// Include local copy of Wing's web services library
+// http://www.upstate.edu/cascade-admin/projects/web-services/oop/classes/
 require_once( '/your/path/cascade_ws/ws_lib.php' );
-// Download the library from:
-// http://www.upstate.edu/cascade-admin/projects/web-services/oop/classes/index.php
 
 $wsdl = "https://cascade.domain.edu:port/ws/services/AssetOperationService?wsdl";
 $auth           = new stdClass();
