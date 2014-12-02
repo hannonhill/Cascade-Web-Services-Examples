@@ -1,13 +1,13 @@
 <?php
 // Initialize variables
 $ct = array(); // the content types array
-$totalContentTypes = $totalPages = 0;
+$totalConfigSets = $totalContentTypes = $totalPages = 0;
+$txt = "<pre>\n"; // saves publish results in plain text
 
 // Get the asset ID passed by the query string.
 $templateId = $_REQUEST['templateId'];
 
-
-// Include authentication information
+// Supply Cascade Server URL, username & password.
 require_once('auth_username.php');
 
 // Get the configuration sets related to the template
@@ -16,35 +16,28 @@ $configSets = $cascade->getAsset(Template::TYPE, $templateId )->getSubscribers()
 // Record the number of related configuration sets
 $totalConfigSets = count( $configSets );
 
-// If there's at least one related config set..
-if( $totalConfigSets > 0 )
-{   
-    // ..loop through all related configuration sets
-    foreach( $configSets as $configSet )
-    {
-        // For each related configuration set, get all related content types 
-        $cs = $configSet->getAsset( $service );
-        $contentTypes = $cs->getSubscribers();
+ 
+// Loop through all related configuration sets
+foreach( $configSets as $configSet )
+{
+    // For each related configuration set, get all related content types 
+    $cs = $configSet->getAsset( $service );
+    $contentTypes = $cs->getSubscribers();
 
-        // Save the total content types related to this config set.
-        $countCT = count( $contentTypes );
+    // Save the total content types related to this config set.
+    $countCT = count( $contentTypes );
 
-        // If there's at least one related content type..
-        if( $countCT > 0 )
-        {
-            // ..loop through all related content types..
-    
-            foreach( $contentTypes as $contentType )
 
-                // and save them to an associative array, removing repeated keys
-                $ct[ $contentType->getPathPath() ] = $contentType;            
-        }
+    // Loop through all related content types..
 
-        // Save the overall total number of content types.
-        $totalContentTypes += $countCT;
-    }
+    foreach( $contentTypes as $contentType )
+
+        // ..and save them to an associative array, removing repeated keys
+        $ct[ $contentType->getPathPath() ] = $contentType;
+
+    // Save the overall total number of content types.
+    $totalContentTypes += $countCT;
 }
-$txt .= "<pre>";
 
 if( count( array_keys( $ct )) > 0 )
 {   
@@ -56,20 +49,21 @@ if( count( array_keys( $ct )) > 0 )
         
         // Save the total pages related to this content type
         $pageCount = count( $pages );
-        $totalPages += $pageCount;
         
         $txt .= "Publishing content type " . $ct_name . ":\n";
         if( $pageCount > 0 )
         {
             foreach( $pages as $page )
             {
-                // print the page paths
+                // report the page paths
                 $txt .= $page->getPathPath() . "\n";
-                // publish pages
+                // publish page
                 $service->publish( $page->toStdClass() );
             }
         }
         $txt .= "\n";
+        // Save the overall total number of pages.
+        $totalPages += $pageCount;
     }
 }
 $txt .= "\ntemplate subscribers = $totalConfigSets configuration sets.\n";
