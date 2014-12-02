@@ -2,9 +2,9 @@ Given a template ID, publishes all related pages.
 
 **How it Works**
 
-1. Loops through the template's related configuration sets
-2. For each configuration set, loops through all related content types
-3. For each content type, loops through all related pages
+1. Loop through the template's related configuration sets
+2. For each configuration set, loop through all related content types
+3. For each content type, loop through all related pages
 4. Publish each page
 
 **Example Usage**
