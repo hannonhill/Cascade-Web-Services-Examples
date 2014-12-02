@@ -14,3 +14,7 @@ publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1
 **Requirements**
 
 Uses Wing Ming Chan's [cascade_ws](http://www.upstate.edu/cascade-admin/projects/web-services/index.php) web services library. Visit [Basic Setup](http://upstate.edu/cascade-admin/projects/web-services/introduction/basic-setup.php) to get started.
+
+**Issues**
+
+Each page is published individually. This can lead to a bottleneck in the [Cascade Server publish queue](http://help.hannonhill.com/discussions/how-do-i/14581-how-to-clear-all-active-publish-jobs).
