@@ -1,4 +1,4 @@
-Publishes all related pages, given a Cascade Server template ID.
+Performs publish requests for pages related to a given template.
 
 **How it Works**
 
@@ -18,3 +18,7 @@ An [auth_user.php](https://github.com/espanae/Cascade-Web-Services-Examples/blob
 **Issues**
 
 Each page is published individually so templates with numerous pages [may clog](http://help.hannonhill.com/discussions/how-do-i/14581-how-to-clear-all-active-publish-jobs) your Cascade Server publish queue.
+
+**Future Improvements**
+
+Wrap publish requests together in a "batch" and submit as a single request.
