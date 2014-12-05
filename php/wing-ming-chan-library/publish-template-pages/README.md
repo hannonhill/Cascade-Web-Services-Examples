@@ -11,9 +11,11 @@ Publish pages based on Template affiliation.
 
 publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1
 
-**Requirements**
+**Requires**
 
-An [auth_user.php](https://github.com/espanae/Cascade-Web-Services-Examples/blob/master/php/wing-ming-chan-library/auth_user.php) file (line 11) that includes a local copy of Wing Ming Chan's [web services library](http://www.upstate.edu/cascade-admin/projects/web-services/), your Cascade Server URL, username and password.
+- A local copy of Wing Ming Chan's [web services library](http://www.upstate.edu/cascade-admin/projects/web-services/)
+- An [auth_user.php](https://github.com/espanae/Cascade-Web-Services-Examples/blob/master/php/wing-ming-chan-library/auth_user.php) file (line 11) that includes Wing's aformentioned library, your Cascade Server URL, username and password.
+- Tested on Cascade Server 7.8
 
 **Issues**
 
