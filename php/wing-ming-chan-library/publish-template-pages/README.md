@@ -12,7 +12,7 @@ publishTemplate.php?templateId=[32-digit template ID]
 **Known Issue**
 
 Templates with numerous pages [may clog](http://help.hannonhill.com/discussions/how-do-i/14581-how-to-clear-all-active-publish-jobs) your Cascade Server publish queue.
-See **How it Works**, step 4 for more on this.
+See **How it Works**, **step 4**.
 
 **How it Works**
 
