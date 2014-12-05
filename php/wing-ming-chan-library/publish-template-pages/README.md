@@ -1,4 +1,4 @@
-Publishes all pages related to a given template.
+Publish pages based on Template affiliation.
 
 **How it Works**
 
