@@ -1,4 +1,4 @@
-Performs publish requests for pages related to a given template.
+Publishes all pages related to a given template.
 
 **How it Works**
 
@@ -13,7 +13,7 @@ publishTemplate.php?templateId=0b8ef427956aa05d06c4a2dad422b5a1
 
 **Requirements**
 
-An [auth_user.php](https://github.com/espanae/Cascade-Web-Services-Examples/blob/master/php/wing-ming-chan-library/auth_user.php) file (line 11) that includes Wing Ming Chan's [web services library](http://www.upstate.edu/cascade-admin/projects/web-services/), your Cascade Server URL, username and password.
+An [auth_user.php](https://github.com/espanae/Cascade-Web-Services-Examples/blob/master/php/wing-ming-chan-library/auth_user.php) file (line 11) that includes a local copy of Wing Ming Chan's [web services library](http://www.upstate.edu/cascade-admin/projects/web-services/), your Cascade Server URL, username and password.
 
 **Issues**
 
