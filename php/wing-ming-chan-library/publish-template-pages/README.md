@@ -6,7 +6,7 @@ publishTemplate.php?templateId=[32-digit template ID]
 
 **Requires**
 
-- See the main [README](https://github.com/espanae/Cascade-Web-Services-Examples/blob/master/php/wing-ming-chan-library/) for a full requirements list.
+- See the main [README](../) for a full requirements list.
 - Cascade Server 7.8 tested.
 
 **Known Issue**
