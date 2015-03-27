@@ -1,4 +1,4 @@
-A script to publish all pages related to a Cascade Server template.
+A script to report all files within a folder, that have no relationships. The code is based on: http://www.upstate.edu/cascade-admin/projects/web-services/managing-orphans/cascade-orphans.php
 
 **Example**
 
