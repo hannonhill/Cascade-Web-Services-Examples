@@ -1,11 +1,12 @@
 <?php
 require_once('auth_espanae.php');
-echo "<p>included auth_espanae.php</p>";
+
 // Set Placement Folder for news asset factories
 $folderID = '68250e75956aa078003f6ca45ac13246';
+echo "<p>$folderID</p>";
 
 echo "<h1>Reporting Orphans In Cascade</h1>\n";
-// if the asset in question has no relationship, then store its path in the $results array.
+
 
 function assetTreeReportOrphans( 
     AssetOperationHandlerService $service, 
@@ -23,8 +24,12 @@ function assetTreeReportOrphans(
     }
 }
 
+echo "<p>funcion assetTreeReportOrphans</p>";
+
 $results = array();
-    
+
+echo "<p>\$results = array();</p>";
+
 Asset::getAsset( 
     $service, Folder::TYPE, $folderID )->
     getAssetTree()->
@@ -32,26 +37,14 @@ Asset::getAsset(
         array( File::TYPE => array( F::REPORT_ORPHANS ) ), 
         NULL, 
         &$results );
+        
+echo "<p>\Asset::getAsset</p>";
 
 if( count( $results[ F::REPORT_ORPHANS ] ) > 0 )
 {
     echo S_UL;
-        
-    foreach( $results[ F::REPORT_ORPHANS ] as $type => $paths )
-    {
-        try {
-            echo S_H2 . $type . E_H2 . S_UL;
-                
-            foreach( $paths as $path )
-            {
-                echo S_LI . $path . E_LI;
-            }
-                
-            echo E_UL;
-        } catch( Exception $e ) {
-            echo S_PRE . $e . E_PRE;
-        }
-    }
+} else {
+    echo "<p>else</p>\n";
 }
-
+echo "<p>if-else</p>\n";
 ?>
