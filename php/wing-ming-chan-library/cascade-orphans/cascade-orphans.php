@@ -4,7 +4,8 @@ require_once('auth_espanae.php');
 // Set Placement Folder for news asset factories
 $folderID = '68250e75956aa078003f6ca45ac13246';
 
-echo "<h1>Reporting Orphans In Cascade</h1>\n";
+echo "
+<h1>Reporting Orphans In Cascade</h1>\n";
 // if the asset in question has no relationship, then store its path in the $results array.
 
 function assetTreeReportOrphans( 
@@ -39,14 +40,18 @@ if( count( $results[ F::REPORT_ORPHANS ] ) > 0 )
         
     foreach( $results[ F::REPORT_ORPHANS ] as $type => $paths )
     {
-        echo S_H2 . $type . E_H2 . S_UL;
+        try {
+            echo S_H2 . $type . E_H2 . S_UL;
                 
-        foreach( $paths as $path )
-        {
-            echo S_LI . $path . E_LI;
+            foreach( $paths as $path )
+            {
+                echo S_LI . $path . E_LI;
+            }
+                
+            echo E_UL;
+        } catch( Exception $e ) {
+            echo S_PRE . $e . E_PRE;
         }
-                
-        echo E_UL;
     }
 }
 
