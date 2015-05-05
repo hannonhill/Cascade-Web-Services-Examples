@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../../web-services/auth_espanae_dev.php');
+require_once('../auth_user.php');
 
 // initialize counter variables
 $totalPages = $totalContentTypes = 0;
