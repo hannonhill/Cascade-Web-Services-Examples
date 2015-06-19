@@ -6,7 +6,10 @@
 require_once( '/your/path/cascade_ws/ws_lib.php' );
 
 // Set the AssetOperationService WSDL URL, the entry point to all available Cascade web service operations. 
-$wsdl = "https://cascade.domain.edu:port/ws/services/AssetOperationService?wsdl";
+$wsdl = "https://your.cascade.instance:port/ws/services/AssetOperationService?wsdl";
+
+// stdClass provides an alternative to working with web services arrays.
+// http://www.upstate.edu/cascade-admin/projects/web-services/introduction/using-stdclass.php
 $auth           = new stdClass();
 $auth->username = "my_username"; /* change this */
 $auth->password = "my_password"; /* change this */
