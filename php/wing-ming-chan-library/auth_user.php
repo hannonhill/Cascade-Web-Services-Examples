@@ -11,11 +11,11 @@ $wsdl = "https://your.cascade.instance:port/ws/services/AssetOperationService?ws
 // stdClass provides an alternative to working with web services arrays.
 // http://www.upstate.edu/cascade-admin/projects/web-services/introduction/using-stdclass.php
 $auth           = new stdClass();
-$auth->username = "my_username"; /* change this */
-$auth->password = "my_password"; /* change this */
+$auth->username = "your_username"; /* change this */
+$auth->password = "your_password"; /* change this */
 
 try {
-  // Initialize the $service object so it can be referenced in the calling script.
+  // The AssetOperationHandlerService class performs basic operations (ie: read and create)
   $service = new AssetOperationHandlerService( $wsdl, $auth );
   // 
   $cascade = new Cascade( $service );
