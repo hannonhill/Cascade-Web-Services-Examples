@@ -17,10 +17,11 @@ $auth->password = "your_password"; /* change this */
 try {
   // The AssetOperationHandlerService class performs basic operations (ie: read and create)
   $service = new AssetOperationHandlerService( $wsdl, $auth );
-  // 
+  
+  // The Cascade class provides the getAsset method to create any Asset object.
   $cascade = new Cascade( $service );
 
-  // create an empty object for a one-time operation
+  // Create an empty object for a one-time operation
   $asset = new stdClass();
 }
 
