@@ -201,19 +201,20 @@
                 var nodes = tree.nodes(root).reverse(),
                     links = tree.links(nodes);
 
-                // Normalize for fixed-depth.
+                // Determine the horizontal spacing of the nodes, using the depth of each node to calculate their position on the y axis.
                 nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-                // Update the nodes…
+                // Declare a variable/function 'node' that will know to select the appropriate object (a node) with the appropriate .id.
                 var node = svg.selectAll("g.node")
                     .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-                // Enter any new nodes at the parent's previous position.
+                // Assign the variable/function 'nodeEnter' to the action of appending any new nodes at the parent's previous position.
                 var nodeEnter = node.enter().append("g")
                     .attr("class", "node")
                     .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
                     .on("click", click);
 
+                // Append the corresponding icon that comprises the node (using 'nodeEnter')
                 nodeEnter.append("svg:image")
                     .attr("xlink:href", 
                     function(d) { 
@@ -229,6 +230,8 @@
                     .attr("y", -8)
                     .attr("x", -8);    
                 
+                // Add the text for each node, placing it on the left side of the node if it has children (d.children)
+                // or the right if it has has no children (d._children).
                 nodeEnter.append("svg:a")
                     .attr("xlink:href", function(d) { return d.url; })
                     .attr("target", "_blank")
@@ -269,11 +272,12 @@
                 nodeExit.select("text")
                     .style("fill-opacity", 1e-6);
 
-                // Update the links…
+                // Declare a 'link' variable/function that creates a link based on all the links that have unique target id’s.
+                // Note: we only want to draw links between a node and its parent.
                 var link = svg.selectAll("path.link")
                     .data(links, function(d) { return d.target.id; });
 
-                // Enter any new links at the parent's previous position.
+                // Add link as a diagonal path. Enter any new links at the parent's previous position.
                 link.enter().insert("path", "g")
                     .attr("class", "link")
                     .attr("d", function(d) 
