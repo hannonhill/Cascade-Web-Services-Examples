@@ -119,13 +119,18 @@
             var i = 0,
                 duration = 750,
                 root;
-
+                
+            // Assign the variable/function "tree" to the d3.js function used to assign and calculate the data required for the nodes and links for the diagram.
             var tree = d3.layout.tree()
                 .size([height, width]);
 
+            // Declare the function that will be used to draw the links between the nodes.
+            // The d3.js diagonal function is used to draw nice curved lines between the nodes. 
             var diagonal = d3.svg.diagonal()
                 .projection(function(d) { return [d.y, d.x]; });
 
+            // Append an SVG working area to the <body> and
+            // create a group element (<g>) that will contain the svg objects (the nodes, text and links).
             var svg = d3.select("body").append("svg")
                 .style("width", width + margin.right + margin.left)
                 .style("height", height + margin.top + margin.bottom)
