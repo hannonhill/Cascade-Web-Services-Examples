@@ -1,16 +1,15 @@
 <html>
     <head>
+        <!-- CSS styling for the circle that represents the nodes, the text alongside them and the links between them. -->
         <style>
             .node circle {
                 fill: #fff;
                 stroke: steelblue;
                 stroke-width: 1.5px;
             }
-
             .node {
                 font: 10px sans-serif;
             }
-
             .link {
                 fill: none;
                 stroke: #ccc;
@@ -112,7 +111,7 @@
                     });
                 }
             }
-            
+            // Declare some of the diagram's standard features such as the size and shape of the svg container with margins included.
             var margin = {top: 20, right: 120, bottom: 20, left: 120},
                 width = $(window).width() - margin.right - margin.left,
                 height = 800 - margin.top - margin.bottom;
