@@ -23,13 +23,6 @@ Customizing the icons
 ---------------------
 To customize icon, change the 'src' attribute of the image in the form in visualize.php. To remove the image, just remove or comment out the <img /> tag.
 
-Resources
----------
-[D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
-[Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
-[Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
-
-
 auth_user.php
 -------------
 This file is included in index.php. It saves the Cascade login information.
@@ -37,3 +30,10 @@ This file is included in index.php. It saves the Cascade login information.
 select-template.php
 --------------
 This file is included in index.php. It generates a template dropdown menu. It requires the 32-digit ID of the folder that contains the Templates.
+
+Resources
+---------
+
+[D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
+[Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
+[Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
