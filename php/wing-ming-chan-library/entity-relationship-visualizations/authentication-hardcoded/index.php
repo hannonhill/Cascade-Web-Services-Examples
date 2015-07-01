@@ -7,9 +7,11 @@
                 stroke: steelblue;
                 stroke-width: 1.5px;
             }
+
             .node {
                 font: 10px sans-serif;
             }
+
             .link {
                 fill: none;
                 stroke: #ccc;
@@ -22,61 +24,7 @@
     <body>
     
         <?php
-        
-        require_once('../../auth_espanae.php');
-        
-        echo "<h3 style='font-family: helvetica, sans-serif; border-bottom: 1px dotted #000;'>
-                  Choose Template to Visualize:
-              </h3>";
-        
-        echo "<form action=\"index.php\">";
-
-        try {
-            // reboot templates folder
-            $folderId = '39ba0d27956aa05200c85bbbfba2a20b';
-            $folder = Asset::getAsset ( $service, T::FOLDER, $folderId);
-            $at = $folder->getAssetTree();
-            
-            $txt .= "<select id='templateId' name='templateId'>\n";
-        
-            function assetTreeGetTemplateId(AssetOperationHandlerService $service,
-                                    Child $child, $params=NULL, &$results=NULL) {
-                // Make sure that the type of the $child is indeed Template::TYPE
-                if( $child->getType() == Template::TYPE )
-                    // Since you only need the path and ID strings, just store them in the array
-                    $results[ $child->getPathPath() ] = $child->getId();
-            }
-
-            $function_array = array(Template::TYPE => array( assetTreeGetTemplateId));
-            $results = array();
-            // When you call AssetTree::traverse, make sure you pass in an array as the third argument.
-            $at->traverse( $function_array, NULL, $results );
-            
-            // $results should have an array of key/value pairs allowing us to do this:
-            foreach($results as $path => $id)
-                $txt .= "<option value='$id'>$path</option>\n";
-            
-            $txt .= "</select>\n";
-            
-            echo $txt;
-            
-            echo "<br />";
-            echo "<br />";
-            echo "<button type=\"submit\">Visualize!</button>";
-            echo "</form>";
-            
-            echo "<h5 id='templateName' style='margin: 20px 0 10px 0; font-family: helvetica, sans-serif;'>";
-            if(isset($_REQUEST['templateId']))
-                echo "Loading...";
-            else
-                echo "Select a Template";
-            echo "</h4>";
-        }
-        catch ( Exception $e ) {
-            $txt .= S_PRE . $e . E_PRE;
-            print($txt);
-        }
-
+        require_once('template-dropdown.php');
         ?>
         
         <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -119,18 +67,13 @@
             var i = 0,
                 duration = 750,
                 root;
-                
-            // Assign the variable/function "tree" to the d3.js function used to assign and calculate the data required for the nodes and links for the diagram.
+
             var tree = d3.layout.tree()
                 .size([height, width]);
 
-            // Declare the function that will be used to draw the links between the nodes.
-            // The d3.js diagonal function is used to draw nice curved lines between the nodes. 
             var diagonal = d3.svg.diagonal()
                 .projection(function(d) { return [d.y, d.x]; });
 
-            // Append an SVG working area to the <body> and
-            // create a group element (<g>) that will contain the svg objects (the nodes, text and links).
             var svg = d3.select("body").append("svg")
                 .style("width", width + margin.right + margin.left)
                 .style("height", height + margin.top + margin.bottom)
@@ -201,20 +144,19 @@
                 var nodes = tree.nodes(root).reverse(),
                     links = tree.links(nodes);
 
-                // Determine the horizontal spacing of the nodes, using the depth of each node to calculate their position on the y axis.
+                // Normalize for fixed-depth.
                 nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-                // Declare a variable/function 'node' that will know to select the appropriate object (a node) with the appropriate .id.
+                // Update the nodes…
                 var node = svg.selectAll("g.node")
                     .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-                // Assign the variable/function 'nodeEnter' to the action of appending any new nodes at the parent's previous position.
+                // Enter any new nodes at the parent's previous position.
                 var nodeEnter = node.enter().append("g")
                     .attr("class", "node")
                     .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
                     .on("click", click);
 
-                // Append the corresponding icon that comprises the node (using 'nodeEnter')
                 nodeEnter.append("svg:image")
                     .attr("xlink:href", 
                     function(d) { 
@@ -230,8 +172,6 @@
                     .attr("y", -8)
                     .attr("x", -8);    
                 
-                // Add the text for each node, placing it on the left side of the node if it has children (d.children)
-                // or the right if it has has no children (d._children).
                 nodeEnter.append("svg:a")
                     .attr("xlink:href", function(d) { return d.url; })
                     .attr("target", "_blank")
@@ -272,12 +212,11 @@
                 nodeExit.select("text")
                     .style("fill-opacity", 1e-6);
 
-                // Declare a 'link' variable/function that creates a link based on all the links that have unique target id’s.
-                // Note: we only want to draw links between a node and its parent.
+                // Update the links…
                 var link = svg.selectAll("path.link")
                     .data(links, function(d) { return d.target.id; });
 
-                // Add link as a diagonal path. Enter any new links at the parent's previous position.
+                // Enter any new links at the parent's previous position.
                 link.enter().insert("path", "g")
                     .attr("class", "link")
                     .attr("d", function(d) 
