@@ -1,22 +1,23 @@
-<?php    
+<?php
+    // Templates folder
+    $folderId = '39ba0d27956aa05200c85bbbfba2a20b';
+    
     require_once('../../auth_espanae.php');
     
-    echo "
-    <h3 style='font-family: helvetica, sans-serif; border-bottom: 1px dotted #000;'>
+    echo "<h3 style='font-family: helvetica, sans-serif; border-bottom: 1px dotted #000;'>
               Choose Template to Visualize:
           </h3>";
     
     echo "
-    <form action=\"index.php\">";
+<form action=\"index.php\">";
 
     try {
-        // reboot templates folder
-        $folderId = '39ba0d27956aa05200c85bbbfba2a20b';
         $folder = Asset::getAsset ( $service, T::FOLDER, $folderId);
         $at = $folder->getAssetTree();
         
         $txt .= "
-        <select id='templateId' name='templateId'>\n";
+        
+    <select id='templateId' name='templateId'>\n";
     
         function assetTreeGetTemplateId(AssetOperationHandlerService $service,
                                 Child $child, $params=NULL, &$results=NULL) {
@@ -34,30 +35,38 @@
         // $results should have an array of key/value pairs allowing us to do this:
         foreach($results as $path => $id)
             $txt .= "
-            <option value='$id'>$path</option>\n";
+            
+        <option value='$id'>$path</option>\n";
         
         $txt .= "
-        </select>\n";
+        
+    </select>\n";
         
         echo $txt;
         
         echo "
-        <br />";
+        
+    <br />";
         echo "
-        <br />";
+        
+    <br />";
         echo "
-        <button type=\"submit\">Visualize!</button>";
+        
+    <button type=\"submit\">Visualize!</button>";
         echo "
-    </form>";
+    
+</form>";
         
         echo "
-    <h5 id='templateName' style='margin: 20px 0 10px 0; font-family: helvetica, sans-serif;'>";
+    
+<h5 id='templateName' style='margin: 20px 0 10px 0; font-family: helvetica, sans-serif;'>";
         if(isset($_REQUEST['templateId']))
             echo "Loading...";
         else
             echo "Select a Template";
         echo "
-    </h4>";
+    
+</h4>";
     }
     catch ( Exception $e ) {
         $txt .= S_PRE . $e . E_PRE;
