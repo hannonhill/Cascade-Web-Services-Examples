@@ -12,6 +12,7 @@ This is the main page of the project. Once a template is selected from the dropd
 How the D3.js works
 -----
 Create a new tree layout with a pre-defined width and height.
+
 `var tree = d3.layout.tree().size([height, width]);`
 
 
