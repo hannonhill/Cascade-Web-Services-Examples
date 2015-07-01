@@ -2,7 +2,7 @@
     // Templates folder
     $folderId = '39ba0d27956aa05200c85bbbfba2a20b';
     
-    require_once('../../auth_espanae.php');
+    require_once('../../auth_user.php');
     
     echo "<h3 style='font-family: helvetica, sans-serif; border-bottom: 1px dotted #000;'>
               Choose Template to Visualize:
