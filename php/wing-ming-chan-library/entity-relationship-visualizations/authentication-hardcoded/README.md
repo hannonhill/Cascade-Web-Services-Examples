@@ -34,6 +34,7 @@ This file is included in index.php. It generates a template dropdown menu. It re
 Resources
 ---------
 
-[D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
-[Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
-[Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
+- [D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
+
+- [Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
+- [Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
