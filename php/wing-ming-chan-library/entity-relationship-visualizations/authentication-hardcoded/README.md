@@ -35,6 +35,6 @@ Resources
 ---------
 
 - [D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
-
+- [Tree diagrams in d3.js](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 - [Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
 - [Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
