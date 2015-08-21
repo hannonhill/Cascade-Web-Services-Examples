@@ -2,7 +2,7 @@ A script to publish all pages related to a Cascade Server template.
 
 **Example**
 
-publishTemplate.php?templateId=[32-digit template ID]
+templatePublisher.php?templateId=[32-digit template ID]
 
 **Requires**
 
