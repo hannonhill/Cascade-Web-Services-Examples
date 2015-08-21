@@ -6,8 +6,8 @@ publishTemplate.php?templateId=[32-digit template ID]
 
 **Requires**
 
-- See the main [README](../) for a full requirements list.
-- Cascade Server 7.8 tested.
+- See the [README](../) in the parent folder for the library's general requirements.
+- Cascade Server 7.8 & 7.12.4 tested.
 
 **Known Issue**
 

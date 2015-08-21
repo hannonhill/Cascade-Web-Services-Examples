@@ -1,5 +1,6 @@
 <html>
     <head>
+        <!-- CSS styling for the circle that represents the nodes, the text alongside them and the links between them. -->
         <style>
             .node circle {
                 fill: #fff;
@@ -23,61 +24,7 @@
     <body>
     
         <?php
-        
-        require_once('../../auth_espanae.php');
-        
-        echo "<h3 style='font-family: helvetica, sans-serif; border-bottom: 1px dotted #000;'>
-                  Choose Template to Visualize:
-              </h3>";
-        
-        echo "<form action=\"index.php\">";
-
-        try {
-            // reboot templates folder
-            $folderId = '39ba0d27956aa05200c85bbbfba2a20b';
-            $folder = Asset::getAsset ( $service, T::FOLDER, $folderId);
-            $at = $folder->getAssetTree();
-            
-            $txt .= "<select id='templateId' name='templateId'>\n";
-        
-            function assetTreeGetTemplateId(AssetOperationHandlerService $service,
-                                    Child $child, $params=NULL, &$results=NULL) {
-                // Make sure that the type of the $child is indeed Template::TYPE
-                if( $child->getType() == Template::TYPE )
-                    // Since you only need the path and ID strings, just store them in the array
-                    $results[ $child->getPathPath() ] = $child->getId();
-            }
-
-            $function_array = array(Template::TYPE => array( assetTreeGetTemplateId));
-            $results = array();
-            // When you call AssetTree::traverse, make sure you pass in an array as the third argument.
-            $at->traverse( $function_array, NULL, $results );
-            
-            // $results should have an array of key/value pairs allowing us to do this:
-            foreach($results as $path => $id)
-                $txt .= "<option value='$id'>$path</option>\n";
-            
-            $txt .= "</select>\n";
-            
-            echo $txt;
-            
-            echo "<br />";
-            echo "<br />";
-            echo "<button type=\"submit\">Visualize!</button>";
-            echo "</form>";
-            
-            echo "<h5 id='templateName' style='margin: 20px 0 10px 0; font-family: helvetica, sans-serif;'>";
-            if(isset($_REQUEST['templateId']))
-                echo "Loading...";
-            else
-                echo "Select a Template";
-            echo "</h4>";
-        }
-        catch ( Exception $e ) {
-            $txt .= S_PRE . $e . E_PRE;
-            print($txt);
-        }
-
+        require_once('template-dropdown.php');
         ?>
         
         <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -112,7 +59,7 @@
                     });
                 }
             }
-            
+            // Declare some of the diagram's standard features such as the size and shape of the svg container with margins included.
             var margin = {top: 20, right: 120, bottom: 20, left: 120},
                 width = $(window).width() - margin.right - margin.left,
                 height = 800 - margin.top - margin.bottom;
