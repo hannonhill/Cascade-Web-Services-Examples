@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>D3 Entity Relationship Diagram</title>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var jsonFile = 'news-story.json';
+
+            // Declare some of the diagram's standard features such as the size and shape of the svg container with margins included.
+            var margin = {top: 20, right: 120, bottom: 20, left: 120},
+                width = $(window).width() - margin.right - margin.left,
+                height = 800 - margin.top - margin.bottom;
+
+            var i = 0,
+                duration = 750,
+                root;
+
+            var tree = d3.layout.tree()
+                .size([height, width]);
+
+            // Declare the variable/function that will be used to draw the links between the nodes.
+            var diagonal = d3.svg.diagonal()
+                .projection(function(d) { return [d.y, d.x]; });
+
+            // Append our SVG working area to the body of our web page and create a group element (<g>) that will contain our svg objects (our nodes, text and links).
+            var svg = d3.select("body").append("svg")
+                .style("width", width + margin.right + margin.left)
+                .style("height", height + margin.top + margin.bottom)
+                .style("padding-bottom", 20)
+                .style("padding-left", 20)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var generate = function(error, data) {
+                myFunction(data, 0);
+                str += "Configuration Sets: " + countRecord[0] + ", "
+                str += "Content Types: " +  countRecord[1] + ", "
+                str += "Pages: " +  countRecord[2]
+                    
+                changeName(str);
+                    
+                root = data;
+                root.x0 = height / 2;
+                root.y0 = 0;
+                
+                function collapse(d) {
+                    if (d.children) {
+                      d._children = d.children;
+                      d._children.forEach(collapse);
+                      d.children = null;
+                    }
+                }
+
+                root.children.forEach(collapse);
+                update(root);
+            }
+                
+            d3.json(jsonFile, generate);            
+            //d3.select(self.frameElement).style("height", "800px");
+
+
+        </script>
+    </body>
+</html>     
