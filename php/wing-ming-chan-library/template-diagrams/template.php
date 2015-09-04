@@ -34,7 +34,7 @@
             <?php
                 if(isset($_REQUEST['templateId'])) {
                     $templateId = $_REQUEST['templateId'];
-                    echo "var jsonFile = 'json-gen.php?templateId=". $templateId ."&auth=" . $_REQUEST['auth'] . "';";
+                    echo "var jsonFile = 'json.php?templateId=". $templateId ."&auth=" . $_REQUEST['auth'] . "';";
                     echo "$('#templateId').val('".$templateId."');";
                 }
             ?>
