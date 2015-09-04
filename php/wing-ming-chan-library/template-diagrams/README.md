@@ -1,8 +1,8 @@
 
 
-index.php
+template.php
 --------------
-This is the main page of the project. Once a template is selected from the dropdown, it displays an entity relationship tree by sending a GET request to json-data.php to fetch data about all entities in the folder in JSON format. It passes this JSON data to the D3 API, which visualizes them as a tree.
+This is the main page of the project. Once a template is selected from the dropdown, it displays an entity relationship tree by sending a GET request to json.php to fetch data about all entities in the folder in JSON format. It passes this JSON data to the D3 API, which visualizes them as a tree.
 
 How D3.js visualizes the tree
 -----------------------------
@@ -15,13 +15,13 @@ Run the tree layout, returning the array of nodes associated with the specified 
 `var nodes = tree.nodes(root).reverse(),
      links = tree.links(nodes);`
 
-index-block.php
+index.html
 -------------
-auth.php receives login information from visaulize.php as a POST request and authenticates it using the Cascade PHP API.
+index.php receives login information from visaulize.php as a POST request and authenticates it using the Cascade PHP API.
 
 Customizing the icons
 ---------------------
-To customize icon, change the 'src' attribute of the image in the form in visualize.php. To remove the image, just remove or comment out the <img /> tag.
+To customize icon, change the 'src' attribute of the image in the form in index.php. To remove the image, just remove or comment out the <img /> tag.
 
 auth_user.php
 -------------

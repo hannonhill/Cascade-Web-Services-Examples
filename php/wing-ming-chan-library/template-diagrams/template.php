@@ -20,20 +20,21 @@
         </style>
         <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript" language="javascript"></script>
     </head>
-    
     <body>
-    
         <?php
-        require_once('template-dropdown.php');
+        if( isset($_REQUEST['auth']) ) {
+            $auth = $_REQUEST['auth'];
+        } else {
+            echo "!isset(\$_REQUEST['auth'])";
+        }
+        require_once('choose-template.php');
         ?>
-        
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script>
-            
             <?php
                 if(isset($_REQUEST['templateId'])) {
                     $templateId = $_REQUEST['templateId'];
-                    echo "var jsonFile = 'json-gen.php?templateId=". $templateId ."';";
+                    echo "var jsonFile = 'json.php?templateId=". $templateId ."&auth=" . $_REQUEST['auth'] . "';";
                     echo "$('#templateId').val('".$templateId."');";
                 }
             ?>
@@ -106,6 +107,7 @@
                 update(root);
             }
                 
+            
             <?php
             
             if(isset($_REQUEST['templateId'])) {
@@ -160,7 +162,7 @@
                 nodeEnter.append("svg:image")
                     .attr("xlink:href", 
                     function(d) { 
-                        return "icons/" + (
+                        return "http://www.union.edu/img/icons/" + (
                             (d.type === "pageconfigurationset")? "pageconfigurationset.gif":
                             (d.type === "contenttype")?  "contenttype.gif":
                             (d.type === "template")? "template.gif":
@@ -262,6 +264,7 @@
                 
                 update(d);
             }
+        
         </script>
     </body>
 </html>
