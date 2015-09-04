@@ -1,6 +1,6 @@
 <?php
 // Supply Cascade Server URL, username & password
-require_once( '../auth_user.php' );
+require_once( '../../auth_user.php' );
 
 // Get the asset ID passed by the query string
 $templateId = $_REQUEST[‘templateId’];
