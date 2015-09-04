@@ -5,7 +5,7 @@ This is the demo code repository for the CSUC15 talk, Data Visualization with Ca
 
 The D3.js library can be found at [http://d3js.org](http://d3js.org).
 
-Presentation slides are viewable [here]https://docs.google.com/a/union.edu/presentation/d/1HftxNkuBVZt7jj_CyrS3RFYGRYnEg3QF2l3sFeaf6ec/edit?usp=sharing)
+Presentation slides are viewable [here](https://docs.google.com/a/union.edu/presentation/d/1HftxNkuBVZt7jj_CyrS3RFYGRYnEg3QF2l3sFeaf6ec/edit?usp=sharing)
 <!--and a video of the presentation is available [here](https://www.youtube.com/watch?v=2ii1lEkIv1s)-->.
 
 
