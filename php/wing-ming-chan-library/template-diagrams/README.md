@@ -1,17 +1,14 @@
 # Template Diagrams
-Cascade Server User Conference 2015 talk and demo.
 
-This is the demo code repository for the CSUC15 talk, Data Visualization with Cascade Server.
+A web services app that generates exploratory tree diagrams of Cascade Server Templates.
 
-The D3.js library can be found at [http://d3js.org](http://d3js.org).
-
-Presentation slides are viewable [here](https://docs.google.com/a/union.edu/presentation/d/1HftxNkuBVZt7jj_CyrS3RFYGRYnEg3QF2l3sFeaf6ec/edit?usp=sharing).
-
-
+index.html
+-------------
+Static PHP form displaying folder and instance dropdowns.
 
 template.php
 --------------
-This is the main page of the project. Once a template is selected from the dropdown, it displays an entity relationship tree by sending a GET request to json.php to fetch data about all entities in the folder in JSON format. It passes this JSON data to the D3 API, which visualizes them as a tree.
+This is the main page of the project. Once a template ID is selected from the dropdown, it displays an entity relationship tree by sending a GET request to the json.php and fetching data about all related configuration sets, content types and pages, in JSON format. It passes this JSON data to the D3 API, which visualizes it as a tree, using SVG.
 
 How D3.js visualizes the tree
 -----------------------------
@@ -24,26 +21,14 @@ Run the tree layout, returning the array of nodes associated with the specified 
 `var nodes = tree.nodes(root).reverse(),
      links = tree.links(nodes);`
 
-index.html
--------------
-index.php receives login information from visaulize.php as a POST request and authenticates it using the Cascade PHP API.
-
 Customizing the icons
 ---------------------
 To customize icon, change the 'src' attribute of the image in the form in index.php. To remove the image, just remove or comment out the <img /> tag.
 
-auth_user.php
--------------
-This file is included in index.php. It saves the Cascade login information.
-
-select-template.php
+choose-template.php
 --------------
-This file is included in index.php. It generates a template dropdown menu. It requires the 32-digit ID of the folder that contains the Templates.
+This file is included in template.php. It generates a template dropdown menu. It requires the 32-digit ID of the folder that contains the Templates.
 
-Resources
----------
-
-- [D3 Tutorial](http://alignedleft.com/tutorials/d3/fundamentals)
-- [Tree diagrams in d3.js](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
-- [Example: Reingold–Tilford Tree](http://bl.ocks.org/mbostock/4339184)
-- [Tree Layout](https://github.com/mbostock/d3/wiki/Tree-Layout)
+json.php
+--------
+Aggregates the names of all the configuration sets, content types and pages related to a Template, in JSON format.
