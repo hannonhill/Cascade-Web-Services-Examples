@@ -1,33 +1,46 @@
 <?php
-// Source variables
+$pages = array(
+    "1d01114d956aa05200ad31cd9fcea31f", // /_Site Support/Banks/Banners/Commencement Bank
+    "c970d8b6956aa0782ed53d82af7b4541",
+    "998927ac956aa0520043168676565a24"
+);
+require_once('auth_espanae.php');
+
+// Page variables
 $site_name   = "reboot";
-$page_name   = "/_Site Support/Banks/Banners/Academics Bank";
 $output = "PHP";
+
+// For above page, clear these regions:
 $region1 = "NAVIGATIONANCESTORS";
 $region2 = "NAVIGATIONCONTEXTUAL";
+
+
+
 ?>
-<h1>Attach Block to Page Region</h1>
+<h1>Bulk Clear Regions</h1>
 <pre>
 <?php
-
-try
-{
-    require_once('auth_espanae_dev.php');
-    $page        = $cascade->getAsset( Page::TYPE, $page_name, $site_name );
-    echo "\$page: \$page\n";
+for ($i=0; $i < count($pages); $i++) {
+    try
+    {
+        // Select page
+        $page = $cascade->getAsset( Page::TYPE, $pages[$i] );
+        //$page = $cascade->getAsset( Page::TYPE, $pages[$i], $site_name );
+        
     
-    // Try passing in a NULL
-    $page->setRegionBlock( $output, $region1, NULL)->edit();
-    echo $region1." block: Tried passing in a NULL\n";
-
-    // Try just passing in two, not three, arguments, leaving the last one empty.
-    $page->setRegionBlock( $output, $region2)->edit();
-    echo $region2." block: Tried passing in a NULL\n";
-
-}
-catch( Exception $e )
-{
-    echo S_PRE . $e . E_PRE;
+        // Remove inherited page-level block/formats
+        $page->setRegionNoBlock( $output, $region1, true)->
+        setRegionNoFormat( $output, $region1, true)->
+        setRegionNoBlock( $output, $region2, true)->
+        setRegionNoFormat( $output, $region2, true)->edit();
+    
+        //echo "Regions updated successfully.\n";
+        echo "\$pages[$i]: ". $pages[$i] ." regions updated successfully.\n";
+    }
+    catch( Exception $e )
+    {
+        echo S_PRE . $e . E_PRE;
+    }
 }
 ?>
 </pre>
